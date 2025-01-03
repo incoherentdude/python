@@ -12,3 +12,6 @@ RUN pip3 install Flask
 
 # Copy the current directory contents into the container at /var/www/html 
 COPY ./ /var/www/html/
+
+# Command to run the Flask application 
+CMD ["python3", "app.py"]
