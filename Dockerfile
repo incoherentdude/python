@@ -6,9 +6,9 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     libapache2-mod-wsgi-py3
-
+    python3-flask
 # Install Flask
-RUN pip3 install python3-Flask
+#RUN pip3 install python3-Flask
 
 # Set the working directory in the container
 WORKDIR /var/www/html
