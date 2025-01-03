@@ -6,7 +6,6 @@ FROM ubuntu/apache2
 RUN apt-get update && apt-get install -y \ 
 python3 \ 
 python3-pip \ 
-python3-flask
 
 # Install Flask 
 RUN pip3 install Flask
