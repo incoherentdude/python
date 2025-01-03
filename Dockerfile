@@ -1,5 +1,5 @@
 # Use the official Python image as the base image
-FROM python:3.8
+FROM python:3.10-slim
 
 # Install Apache2 and mod_wsgi
 RUN apt-get update && \
