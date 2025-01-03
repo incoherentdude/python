@@ -1,30 +1,17 @@
-# Use an official Ubuntu with Apache2 as a parent image
-FROM ubuntu/apache2
-
-# Update the package list and install necessary packages
-RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip \
-    libapache2-mod-wsgi-py3
-    python3-flask
-# Install Flask
-#RUN pip3 install python3-Flask
+# Use official Python image from Docker Hub
+FROM python:3.8
 
 # Set the working directory in the container
-WORKDIR /var/www/html
+WORKDIR /app
 
-# Copy the current directory contents into the container at /var/www/html
-COPY ./ /var/www/html/
+# Copy the current directory contents into the container
+COPY . /app
 
-# Configure Apache2 to serve the Flask application
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
-RUN a2enmod wsgi
+# Install the Flask package
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy Apache configuration file for the Flask app
-COPY ./myapp.conf /etc/apache2/sites-available/000-default.conf
+# Make port 5000 available to the world outside the container
+EXPOSE 5000
 
-# Expose port 80 for Apache2
-EXPOSE 80
-
-# Command to run the Flask application
-CMD ["python3", "app.py"]
+# Define the command to run the application
+CMD ["python", "app.py"]
